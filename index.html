@@ -274,7 +274,8 @@ footer{border-top:1px solid var(--line);padding-block:28px;font-size:.85rem;colo
         <span class="eyebrow">A game journal for iPhone and iPad</span>
         <h1>Every evening of play, logged by the fire.</h1>
         <p class="lede">Campfire Log reads your Steam and PlayStation playtime each day and turns it into a journal. You don't start timers. You just add a few words about how it went.</p>
-        <form class="signup" id="signup-hero" novalidate>
+        <form class="signup" id="signup-hero" novalidate style="position:relative">
+          <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
           <div class="field">
             <input type="email" id="email-hero" name="email_address" placeholder="you@example.com" autocomplete="email" aria-label="Email" required>
             <button type="submit">Join the waitlist</button>
@@ -440,7 +441,8 @@ footer{border-top:1px solid var(--line);padding-block:28px;font-size:.85rem;colo
     <span class="eyebrow">Waitlist</span>
     <h2 id="join-h">Pull up a log.</h2>
     <p class="muted" style="max-width:34em">Join the waitlist to get a TestFlight invite before launch.</p>
-    <form class="signup" id="signup-foot" novalidate>
+    <form class="signup" id="signup-foot" novalidate style="position:relative">
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
       <div class="field">
         <input type="email" id="email-foot" name="email_address" placeholder="you@example.com" autocomplete="email" aria-label="Email" required>
         <button type="submit">Join the waitlist</button>
@@ -474,6 +476,9 @@ document.querySelectorAll("form.signup").forEach(function (form) {
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     const email = form.querySelector('input[type="email"]');
+    /* Honeypot: people never see this field, simple bots fill it in. Pretend success and send nothing. */
+    const trap = form.querySelector('input[name="website"]');
+    if (trap && trap.value) { const t = document.createElement("div"); t.className = "thanks"; t.textContent = "You're on the list."; form.replaceWith(t); return; }
     if (!email.value || !email.checkValidity()) {
       email.setCustomValidity("Enter an email address like you@example.com.");
       email.reportValidity();
