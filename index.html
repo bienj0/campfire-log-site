@@ -123,6 +123,62 @@ legend{font-size:.9rem;color:var(--smoke);padding:0;margin-bottom:10px}
 .s-note{font:14px/1.4 var(--serif);background:#23262D;border-radius:10px;padding:8px 10px}
 .s-add{font-size:12.5px;font-weight:600;color:#FF8B42}
 
+/* iPhone (16 Pro proportions: 402 x 874 pt screen, thin titanium band, Dynamic Island, side buttons) */
+.iphone{position:relative;width:300px;max-width:100%;aspect-ratio:426/898;border-radius:52px;padding:9px;background:#141518;
+  box-shadow:inset 0 0 0 1.5px #4a4b52,inset 0 0 0 4px #1d1e22,0 40px 70px -28px rgba(0,0,0,.6)}
+.iphone .btn{position:absolute;width:3px;background:#3a3b41}
+.iphone .b-action{left:-2px;top:16%;height:4.5%;border-radius:2px 0 0 2px}
+.iphone .b-vup{left:-2px;top:24%;height:8%;border-radius:2px 0 0 2px}
+.iphone .b-vdn{left:-2px;top:34%;height:8%;border-radius:2px 0 0 2px}
+.iphone .b-power{right:-2px;top:27%;height:12%;border-radius:0 2px 2px 0}
+.iphone .b-cam{right:-2px;top:52%;height:7%;border-radius:0 2px 2px 0;background:#2b2c31}
+.iphone .screen{height:100%;border-radius:43px;padding:0 14px 0;align-content:start}
+.statusbar{display:flex;justify-content:space-between;align-items:center;height:46px;padding:4px 22px 0 26px;font:600 14px/1 var(--ui);color:#F2EDE5}
+.statusbar svg{height:11px;width:auto;fill:#F2EDE5}
+.statusbar .icons{display:flex;gap:5px;align-items:center}
+.iphone .island{top:10px;width:92px;height:27px;border-radius:16px;z-index:2}
+.tabbar{position:absolute;left:0;right:0;bottom:0;height:72px;background:rgba(20,22,27,.94);border-top:1px solid #2C2F37;display:flex;justify-content:space-around;padding-top:8px}
+.tab{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;color:#A0998F;min-width:56px}
+.tab svg{width:22px;height:22px}
+.tab.on{color:#FF8B42;font-weight:600}
+.home-ind{position:absolute;bottom:7px;left:50%;transform:translateX(-50%);width:36%;height:4px;border-radius:2px;background:#F2EDE5;opacity:.9}
+
+/* iPad (11-inch proportions in landscape, 1210 x 834 pt screen); drawn at 880px and scaled down to fit */
+.devices-band{display:grid;gap:14px}
+.fit{width:100%;max-width:880px;margin:36px auto 0;overflow:hidden}
+.ipad{width:880px;height:612px;transform-origin:0 0;border-radius:34px;padding:13px;background:#141518;
+  box-shadow:inset 0 0 0 1.5px #4a4b52,inset 0 0 0 4px #1d1e22,0 40px 70px -30px rgba(0,0,0,.55);position:relative}
+.ipad .cam{position:absolute;top:5px;left:50%;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:#2a2c33}
+.ipad .scr{height:100%;border-radius:22px;overflow:hidden;background:#0F1115;color:#F2EDE5;display:grid;grid-template-columns:200px 290px 1fr;font:13px/1.35 var(--ui);position:relative}
+.ipad .statusbar{position:absolute;left:0;right:0;top:0;height:26px;padding:0 18px;font-size:12px;z-index:2}
+.side{background:#16181D;border-right:1px solid #2C2F37;padding:44px 10px 16px;display:flex;flex-direction:column;gap:3px}
+.side .ttl{font:800 22px var(--round);padding:0 8px 12px}
+.side-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;font-size:14px}
+.side-item svg{width:18px;height:18px;color:#FF8B42}
+.side-item.on{background:#FF8B42;color:#1A0E06;font-weight:600}
+.side-item.on svg{color:#1A0E06}
+.side .s-pill{margin:auto 8px 0;align-self:flex-start}
+.col{padding:44px 14px 16px;display:flex;flex-direction:column;gap:12px;min-width:0;position:relative;overflow:hidden}
+.col+.col{border-left:1px solid #2C2F37}
+.col.list::before{content:"";position:absolute;inset:0 0 auto;height:200px;background:radial-gradient(120% 70% at 50% 0%,rgba(255,139,66,.2) 0%,rgba(15,17,21,0) 70%)}
+.col>*{position:relative}
+.s-game.sel{background:#3B2417;border-radius:13px}
+.detail{padding:0 0 16px}
+.gp-hero{height:180px;background:linear-gradient(180deg,#3d1d4d 0%,#a2472a 100%);display:flex;align-items:flex-end;padding:16px 18px;position:relative}
+.gp-hero::after{content:"";position:absolute;inset:auto 0 0;height:70px;background:linear-gradient(180deg,rgba(15,17,21,0),#0F1115)}
+.gp-head{position:relative;z-index:1;display:flex;gap:14px;align-items:flex-end}
+.gp-cover{width:70px;height:94px;border-radius:8px;background:linear-gradient(160deg,#5b2a6e,#c0532b);border:2px solid rgba(255,255,255,.3);box-shadow:0 8px 18px rgba(0,0,0,.35)}
+.gp-head b{font:800 26px/1.1 var(--round);display:block}
+.status{display:inline-flex;align-items:center;gap:5px;margin-top:6px;padding:4px 10px;border-radius:999px;background:#FF8B42;color:#1A0E06;font:700 11.5px var(--round)}
+.status svg{width:12px;height:12px}
+.d-body{padding:4px 18px 0;display:grid;gap:12px}
+.stats3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stat{padding:9px 11px;border-radius:11px;background:#1A1C22;border:1px solid #2C2F37;display:grid}
+.stat b{font:700 17px var(--round);font-variant-numeric:tabular-nums}
+.stat span{font-size:10.5px;color:#A0998F}
+.d-note{padding:10px 12px;display:grid;gap:3px}
+.d-note span:last-child{font:14.5px/1.4 var(--serif)}
+
 /* steps: a real sequence */
 .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin:36px 0 0;counter-reset:s;list-style:none;padding:0}
 .steps li{display:grid;gap:8px;align-content:start;min-width:0}
@@ -179,6 +235,7 @@ footer{border-top:1px solid var(--line);padding-block:28px;font-size:.85rem;colo
     <symbol id="i-books" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3.5" y="4" width="4.5" height="16" rx="1"/><rect x="9.5" y="4" width="4.5" height="16" rx="1"/><path d="m14.1 5.2 4.2-1.1 3.6 15.4-4.2 1.1z"/></g></symbol>
     <symbol id="i-medal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="13" r="7"/><circle cx="12" cy="13" r="3.5"/><path d="M8 3h8l-2 4h-4z" stroke-linejoin="round"/></g></symbol>
     <symbol id="i-moon" viewBox="0 0 24 24"><path fill="currentColor" d="M20 14.6A8 8 0 0 1 9.4 4a8 8 0 1 0 10.6 10.6Z"/></symbol>
+    <symbol id="i-person" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M5 20c.8-3.6 3.6-5.6 7-5.6s6.2 2 7 5.6"/></g></symbol>
     <symbol id="i-pen" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></g></symbol>
     <symbol id="i-hourglass" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12M6 21h12M7 3c0 5 10 5 10 9s-10 4-10 9M17 3c0 5-10 5-10 9s10 4 10 9"/></g></symbol>
   </defs>
@@ -227,9 +284,11 @@ footer{border-top:1px solid var(--line);padding-block:28px;font-size:.85rem;colo
       </div>
 
       <div class="phone-stage" role="img" aria-label="The Today screen in the evening: a 12-day streak, Hades II for 2 hours 30 minutes with a note, and Astro Bot for 40 minutes">
-        <div class="phone">
+        <div class="iphone">
+          <span class="btn b-action"></span><span class="btn b-vup"></span><span class="btn b-vdn"></span><span class="btn b-power"></span><span class="btn b-cam"></span>
           <div class="screen" aria-hidden="true">
             <div class="island"></div>
+            <div class="statusbar"><span>9:41</span><span class="icons"><svg viewBox="0 0 18 11"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="6" rx="1"/><rect x="10" y="2.5" width="3" height="8.5" rx="1"/><rect x="15" y="0" width="3" height="11" rx="1"/></svg><svg viewBox="0 0 16 11"><path d="M8 2.2c2.3 0 4.4.9 6 2.4l1.2-1.3A10.4 10.4 0 0 0 8 .4 10.4 10.4 0 0 0 .8 3.3L2 4.6a8.6 8.6 0 0 1 6-2.4Zm0 3.4c1.4 0 2.6.5 3.6 1.4l1.2-1.3A7 7 0 0 0 8 3.8a7 7 0 0 0-4.8 1.9L4.4 7c1-.9 2.2-1.4 3.6-1.4Zm0 3.3c-.6 0-1.2.2-1.6.6L8 11l1.6-1.5c-.4-.4-1-.6-1.6-.6Z"/></svg><svg viewBox="0 0 27 12"><rect x=".5" y=".5" width="22" height="11" rx="3.2" fill="none" stroke="#F2EDE5" opacity=".45"/><rect x="2" y="2" width="17" height="8" rx="2"/><path d="M24 4v4c.8-.3 1.4-1.1 1.4-2S24.8 4.3 24 4Z" opacity=".45"/></svg></span></div>
             <div class="s-head">
               <div><div class="s-eyebrow">Tuesday, Nov 3</div><div class="s-large">Tonight</div></div>
               <span class="s-pill"><svg class="flicker"><use href="#i-flame"/></svg>12 days</span>
@@ -247,6 +306,8 @@ footer{border-top:1px solid var(--line);padding-block:28px;font-size:.85rem;colo
                 <span class="s-add">Add a note</span>
               </div>
             </div>
+            <nav class="tabbar"><span class="tab on"><svg><use href="#i-flame"/></svg>Today</span><span class="tab"><svg><use href="#i-cal"/></svg>History</span><span class="tab"><svg><use href="#i-books"/></svg>Lists</span><span class="tab"><svg><use href="#i-person"/></svg>Accounts</span></nav>
+            <div class="home-ind"></div>
           </div>
         </div>
       </div>
@@ -264,6 +325,57 @@ footer{border-top:1px solid var(--line);padding-block:28px;font-size:.85rem;colo
       <li><h3>Play like you always do</h3><p>Campfire Log checks your playtime totals a few times a day and works out how long you played each game.</p></li>
       <li><h3>Open it in the evening</h3><p>Today's games are already there. Tap one to jot down what happened. A gentle reminder nudges you if you forget.</p></li>
     </ol>
+  </section>
+
+  <section class="devices-band" aria-labelledby="ipad-h">
+    <span class="eyebrow">iPhone and iPad</span>
+    <h2 id="ipad-h">Room for the whole playthrough on iPad</h2>
+    <p class="muted" style="max-width:36em">On iPad your days, your games and every note you wrote about them sit side by side. Your journal syncs between both through iCloud.</p>
+    <div class="fit" data-fit role="img" aria-label="Campfire Log on iPad: a sidebar, tonight's games, and the Hades II page with progress and your notes">
+      <div class="ipad" aria-hidden="true">
+        <span class="cam"></span>
+        <div class="scr">
+          <div class="statusbar"><span>9:41&nbsp;&nbsp;Tue 3 Nov</span><span class="icons"><svg viewBox="0 0 16 11"><path d="M8 2.2c2.3 0 4.4.9 6 2.4l1.2-1.3A10.4 10.4 0 0 0 8 .4 10.4 10.4 0 0 0 .8 3.3L2 4.6a8.6 8.6 0 0 1 6-2.4Zm0 3.4c1.4 0 2.6.5 3.6 1.4l1.2-1.3A7 7 0 0 0 8 3.8a7 7 0 0 0-4.8 1.9L4.4 7c1-.9 2.2-1.4 3.6-1.4Zm0 3.3c-.6 0-1.2.2-1.6.6L8 11l1.6-1.5c-.4-.4-1-.6-1.6-.6Z"/></svg><span style="font-size:11px">84%</span><svg viewBox="0 0 27 12"><rect x=".5" y=".5" width="22" height="11" rx="3.2" fill="none" stroke="#F2EDE5" opacity=".45"/><rect x="2" y="2" width="17" height="8" rx="2"/><path d="M24 4v4c.8-.3 1.4-1.1 1.4-2S24.8 4.3 24 4Z" opacity=".45"/></svg></span></div>
+          <div class="side">
+            <div class="ttl">Campfire Log</div>
+            <span class="side-item on"><svg><use href="#i-flame"/></svg>Today</span>
+            <span class="side-item"><svg><use href="#i-cal"/></svg>History</span>
+            <span class="side-item"><svg><use href="#i-books"/></svg>Lists</span>
+            <span class="side-item"><svg><use href="#i-medal"/></svg>Medals</span>
+            <span class="side-item"><svg><use href="#i-person"/></svg>Accounts</span>
+            <span class="s-pill"><svg><use href="#i-flame"/></svg>12 days</span>
+          </div>
+          <div class="col list">
+            <div><div class="s-eyebrow">Tuesday, Nov 3</div><div class="s-large">Tonight</div></div>
+            <div class="s-row-head"><span class="s-title2">Played today</span><span class="s-sub num">3 h 10 min</span></div>
+            <div class="s-card">
+              <div class="s-game sel">
+                <div class="s-top"><div class="cover cv1"></div><div class="s-name"><b>Hades II</b><span class="s-sub">Steam · about 41% through</span></div><span class="s-time">2 h 30</span></div>
+                <div class="track"><i style="width:41%"></i></div>
+              </div>
+              <div class="s-game">
+                <div class="s-top"><div class="cover cv2"></div><div class="s-name"><b>Astro Bot</b><span class="s-sub">PlayStation · about 70% through</span></div><span class="s-time">40 min</span></div>
+                <div class="track"><i style="width:70%"></i></div>
+                <span class="s-add">Add a note</span>
+              </div>
+            </div>
+          </div>
+          <div class="col detail">
+            <div class="gp-hero"><div class="gp-head"><div class="gp-cover"></div><div><b>Hades II</b><span class="s-sub" style="color:#F2EDE5;opacity:.85">Supergiant Games · Steam</span><br><span class="status"><svg><use href="#i-flame"/></svg>Playing</span></div></div></div>
+            <div class="d-body">
+              <div class="s-card" style="padding:12px;display:grid;gap:8px">
+                <div class="s-row-head"><b style="font:700 15px var(--round)">About 41% through</b><span class="s-sub num">42 h played</span></div>
+                <div class="track" style="height:7px"><i style="width:41%"></i></div>
+              </div>
+              <div class="stats3"><div class="stat"><b>14 h</b><span>Last 30 days</span></div><div class="stat"><b>16</b><span>Days played</span></div><div class="stat"><b>Sep 14</b><span>Started</span></div></div>
+              <span class="s-title2" style="font-size:15px">Your notes</span>
+              <div class="s-card d-note"><span class="s-sub">Tue, Nov 3 · 2 h 30 min</span><span>Finally beat the second boss. Saving the new weapon for tomorrow.</span></div>
+              <div class="s-card d-note"><span class="s-sub">Sat, Oct 31 · 3 h 05 min</span><span>Night run with the new aspect. Died to the twins again, so close.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 </div>
 
@@ -334,6 +446,17 @@ footer{border-top:1px solid var(--line);padding-block:28px;font-size:.85rem;colo
 </div>
 
 <script>
+/* Scale the iPad drawing down to the available width. */
+function fitDevices() {
+  document.querySelectorAll("[data-fit]").forEach(function (wrap) {
+    const dev = wrap.firstElementChild;
+    const s = Math.min(1, wrap.clientWidth / dev.offsetWidth);
+    dev.style.transform = "scale(" + s + ")";
+    wrap.style.height = Math.ceil(dev.offsetHeight * s) + "px";
+  });
+}
+fitDevices();
+window.addEventListener("resize", fitDevices);
 /* Signup: set FORM_ACTION to the Kit form URL when the site goes live.
    Left empty, the form only shows the thank-you message (preview mode). */
 const FORM_ACTION = "https://app.kit.com/forms/10152342/subscriptions";
