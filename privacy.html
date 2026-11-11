@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<meta name="theme-color" content="#0F1115">
+<title>Campfire Log Privacy</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="How Campfire Log handles your data: your journal stays on your device and in your own iCloud.">
+<style>
+@font-face{font-family:"Nunito";font-style:normal;font-weight:700 800;font-display:swap;src:url(fonts/nunito-latin.woff2) format("woff2")}
+/* Layout: one reading column, site header, summary card, plain sections. Nightfall (dark) default, Clear for light. */
+:root{
+  --ash:#0F1115; --birch:#1A1C22; --line:#2C2F37;
+  --charcoal:#F2EDE5; --smoke:#A0998F;
+  --ember:#FF8B42; --glow:#3B2417;
+  --round:ui-rounded,"SF Pro Rounded","Nunito",system-ui,sans-serif;
+  --ui:-apple-system,system-ui,"Segoe UI",Roboto,sans-serif;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --ash:#F2F2F7; --birch:#FFFFFF; --line:#E1E1E6;
+    --charcoal:#111111; --smoke:#636366;
+    --ember:#BF4A12; --glow:#FFEADB;
+    color-scheme:light;
+  }
+}
+:root[data-theme="light"]{
+  --ash:#F2F2F7; --birch:#FFFFFF; --line:#E1E1E6;
+  --charcoal:#111111; --smoke:#636366;
+  --ember:#BF4A12; --glow:#FFEADB;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ash);color:var(--charcoal);font:400 17px/1.6 var(--ui);-webkit-font-smoothing:antialiased}
+a{color:var(--ember)}
+a:focus-visible{outline:2px solid var(--ember);outline-offset:3px}
+.wrap{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:8px 48px;display:flex;flex-direction:column;gap:40px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:16px 0;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font:800 1.15rem/1 var(--round);color:var(--charcoal);text-decoration:none}
+.flame{width:26px;height:26px;fill:var(--ember);stroke:var(--smoke);stroke-width:1.6;stroke-linecap:round}
+.flame path:first-child{stroke:none}
+.eyebrow{font:600 .75rem/1 var(--ui);letter-spacing:.1em;text-transform:uppercase;color:var(--smoke)}
+section{display:flex;flex-direction:column;gap:14px;min-width:0}
+h1,h2,h3{font-family:var(--round);text-wrap:balance;margin:0;letter-spacing:-.01em}
+h1{font-size:clamp(2rem,6vw,2.8rem);line-height:1.08;font-weight:800}
+h2{font-size:1.45rem;line-height:1.2;font-weight:800}
+h3{font-size:1.05rem;font-weight:700;margin-top:10px}
+p{margin:0;max-width:65ch}
+.lede{font-size:1.12rem;color:var(--charcoal)}
+.meta{font-size:.88rem;color:var(--smoke)}
+.muted{color:var(--smoke)}
+.short{background:var(--birch);border:1px solid var(--line);border-radius:16px;padding:22px 22px 24px}
+.facts{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px}
+.facts li{padding-left:22px;position:relative}
+.facts li::before{content:"";position:absolute;left:2px;top:.62em;width:8px;height:8px;border-radius:50%;background:var(--ember)}
+.plain{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:10px}
+.addr{font-weight:600;user-select:all;white-space:nowrap}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:.95rem}
+th,td{text-align:left;vertical-align:top;padding:10px 14px;border-bottom:1px solid var(--line)}
+th{font:600 .75rem/1.3 var(--ui);letter-spacing:.08em;text-transform:uppercase;color:var(--smoke);background:var(--birch)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600;white-space:nowrap}
+.soon{display:inline-block;margin-left:6px;font:600 .68rem/1 var(--ui);letter-spacing:.06em;text-transform:uppercase;color:var(--ember);background:var(--glow);border-radius:999px;padding:3px 7px;vertical-align:2px}
+.pairs{margin:0;display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line)}
+.pairs div{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}
+.pairs dt{font-weight:600}
+.pairs dd{margin:0;min-width:0}
+@media (max-width:520px){.pairs div{grid-template-columns:1fr;gap:2px}}
+.foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.88rem;padding-top:20px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="top">
+    <a class="brand" href="./"><svg class="flame" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 3.5 4.5 5.5 4.5 10a4.5 4.5 0 0 1-9 0c0-2.2 1-3.6 2.2-4.8.3 1.6 1 2.6 2 3.1C11 8 12.5 5.5 12 2Z"/><path d="M5 20.5h14" /></svg>Campfire Log</a>
+    <span class="eyebrow">Privacy policy</span>
+  </header>
+
+  <section class="intro">
+    <h1>Your journal stays yours</h1>
+    <p class="lede">Campfire Log has no accounts and no database of its own. Your playtime and notes live on your iPhone or iPad and in your own iCloud. This page explains the few things that do leave your device, where they go and why.</p>
+    <p class="meta">Last updated 11 November 2026 · applies to the Campfire Log app and campfirelog.eu</p>
+  </section>
+
+  <section class="short" aria-labelledby="short">
+    <h2 id="short">The short version</h2>
+    <ul class="facts">
+      <li><strong>Your journal</strong> (playtime, notes, lists, medals) is stored on your device and synced through your own iCloud. I can't see it.</li>
+      <li><strong>Game accounts you connect</strong> are used only to read your playtime from Steam, PlayStation and, later, Nintendo and Xbox. Sign-ins stay in your device's Keychain.</li>
+      <li><strong>A small helper service</strong> looks up game info and Steam playtime for you. It passes requests along and keeps nothing.</li>
+      <li><strong>Banner ads</strong> from Google appear on two screens. They're non-personalised, and a one-time purchase removes them.</li>
+      <li><strong>No tracking, no analytics, no account.</strong> Delete my data in Settings wipes everything.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="who">
+    <h2 id="who">Who is responsible</h2>
+    <p>Campfire Log is made by Robin van 't Slot, an independent developer in the Netherlands. For anything about your privacy, email <span class="addr">hello@campfirelog.eu</span>.</p>
+  </section>
+
+  <section aria-labelledby="app">
+    <h2 id="app">In the app</h2>
+
+    <h3>Your journal</h3>
+    <p>Everything you log stays in the app's storage on your device. If you're signed in to iCloud, the app syncs it between your devices through Apple's CloudKit, in your private iCloud database. That copy is protected by your Apple Account and counts toward your own iCloud storage. I have no access to it. If you're not signed in to iCloud, the journal stays on that one device.</p>
+
+    <h3>Game accounts you connect</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">Platform</th><th scope="col">What you give</th><th scope="col">What the app reads</th></tr></thead>
+        <tbody>
+          <tr><td>Steam</td><td>Your SteamID, which is public. No password.</td><td>Your games and total playtime, through the helper service below.</td></tr>
+          <tr><td>PlayStation</td><td>You sign in on Sony's own page. The app keeps the sign-in token in your device's Keychain.</td><td>Your games, total playtime and when you last played, straight from Sony.</td></tr>
+          <tr><td>Nintendo Switch <span class="soon">later</span></td><td>You sign in to your Nintendo Account. Requires Parental Controls on the Switch.</td><td>Daily playtime per game, straight from Nintendo.</td></tr>
+          <tr><td>Xbox <span class="soon">later</span></td><td>You sign in with your Microsoft account.</td><td>Your games and when you last played, straight from Microsoft.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The app only reads. It never posts, buys, messages or changes anything on your game accounts. Sign-in tokens are sent only to the platform they belong to. Disconnecting an account in the app deletes its token from your device.</p>
+
+    <h3>The helper service</h3>
+    <p>Covers, genres, time-to-beat and other game details come from IGDB, a game database run by Twitch. To keep secret keys out of the app, these lookups and Steam playtime requests pass through a small helper service that I run on Cloudflare. The helper receives what's needed to answer the request: the search words or game id, your SteamID for Steam playtime, and your IP address because that's how the internet works. It forwards the request to IGDB or Steam, returns the answer and stores nothing. Cloudflare runs the helper on my behalf and may keep short-lived technical logs for security.</p>
+
+    <h3>Ads</h3>
+    <p>Banner ads from Google AdMob appear on the History and Lists screens only. Ads are non-personalised, so they're not based on your interests or on other apps you use, and the app never asks to track you. To show an ad, Google still receives technical data such as your IP address, device type, operating system and an advertising-related identifier, and uses it to deliver ads, limit how often you see the same one, and prevent fraud. If you're in the EU, the UK or Switzerland, Google's consent form asks for your choice before the first ad. You can change that choice in Settings. Read <a href="https://policies.google.com/technologies/partner-sites" rel="noopener">how Google uses data from apps that use its services</a>.</p>
+    <p>Buy Remove Ads once and the ad service isn't started again on your devices.</p>
+
+    <h3>Purchases</h3>
+    <p>Purchases go through Apple. I never see your name or payment details. Apple only tells the app that you own Remove Ads.</p>
+
+    <h3>Reminders and widgets</h3>
+    <p>The evening reminder is scheduled on your device. Widgets read the same on-device journal. No reminder or widget data is sent anywhere.</p>
+
+    <h3>Crash reports</h3>
+    <p>If you've allowed your device to share analytics with app developers, Apple sends me anonymous crash reports. You can turn this off in Settings &gt; Privacy &amp; Security &gt; Analytics &amp; Improvements. The app has no analytics of its own.</p>
+  </section>
+
+  <section aria-labelledby="site">
+    <h2 id="site">On campfirelog.eu and the waitlist</h2>
+    <p>The website is hosted on GitHub Pages. It sets no cookies, has no analytics and loads its fonts from its own server. GitHub logs visitors' IP addresses for security; see <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">GitHub's privacy statement</a>.</p>
+    <p>If you join the waitlist, your email address and the platforms you picked are stored with Kit, the email service that sends Campfire Log's emails. You confirm your address first, and they're used only to tell you about Campfire Log's beta and launch. Every email has an unsubscribe link, and unsubscribing or asking me removes you. See <a href="https://kit.com/privacy" rel="noopener">Kit's privacy policy</a>.</p>
+    <p>If you email me, the message is kept in my iCloud Mail so I can reply.</p>
+  </section>
+
+  <section aria-labelledby="legal">
+    <h2 id="legal">Legal basis, transfers and how long</h2>
+    <dl class="pairs">
+      <div><dt>Waitlist</dt><dd>Your consent. Kept until you unsubscribe or ask me to delete it.</dd></div>
+      <div><dt>Helper service</dt><dd>Needed to provide the features you ask for. Nothing is kept.</dd></div>
+      <div><dt>Ads</dt><dd>Your consent where the law requires it, otherwise a legitimate interest in keeping the app free. Google's retention applies.</dd></div>
+      <div><dt>Your journal</dt><dd>Stays under your control on your devices and in your iCloud. I don't process it.</dd></div>
+    </dl>
+    <p>Google, Cloudflare, Kit and GitHub are based in the United States. Data that reaches them is protected by the safeguards they provide for transfers out of the EU, such as the EU-US Data Privacy Framework or the EU's Standard Contractual Clauses.</p>
+  </section>
+
+  <section aria-labelledby="rights">
+    <h2 id="rights">Your choices and rights</h2>
+    <ul class="plain">
+      <li><strong>Delete everything:</strong> Settings &gt; Delete my data removes your journal from this device and your iCloud, and signs out of every game account. Deleting the app removes the local copy too.</li>
+      <li><strong>Disconnect an account</strong> at any time in the Accounts tab.</li>
+      <li><strong>Under the GDPR</strong> you can ask to see, correct or delete personal data I hold, object to its use, or withdraw consent. Email <span class="addr">hello@campfirelog.eu</span> and I'll reply within 30 days.</li>
+      <li><strong>Complaints:</strong> you can contact the Dutch data protection authority, the <a href="https://autoriteitpersoonsgegevens.nl/en" rel="noopener">Autoriteit Persoonsgegevens</a>, or the authority where you live.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="kids">
+    <h2 id="kids">Children</h2>
+    <p>Campfire Log is not made for children under 16, and they shouldn't use it without a parent. When a parent connects Nintendo Parental Controls, the app reads their child's Switch playtime into the parent's own journal on the parent's device. It goes nowhere else.</p>
+  </section>
+
+  <section aria-labelledby="changes">
+    <h2 id="changes">Changes</h2>
+    <p>If this policy changes, I'll update the date at the top. If a change affects what leaves your device, the app will tell you before it takes effect.</p>
+  </section>
+
+  <footer class="foot"><a href="./">campfirelog.eu</a><span class="muted">© 2026 Robin van 't Slot</span></footer>
+</main>
+</body>
+</html>
