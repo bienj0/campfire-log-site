@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0F1115">
+<title>Campfire Log</title>
+<style>
+/* Where Steam sends people after "Sign in through Steam". It hands Steam's answer straight
+   back to the app and keeps nothing. Nightfall (dark) default, Clear for light. */
+:root{--ash:#0F1115;--charcoal:#F2EDE5;--smoke:#A0998F;--ember:#FF8B42;color-scheme:dark}
+@media (prefers-color-scheme: light){:root{--ash:#F2F2F7;--charcoal:#111111;--smoke:#636366;--ember:#BF4A12;color-scheme:light}}
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:var(--ash);color:var(--charcoal);font:400 17px/1.5 -apple-system,system-ui,"Segoe UI",Roboto,sans-serif;text-align:center}
+main{padding:24px;max-width:340px}
+h1{margin:0 0 8px;font:800 24px/1.2 ui-rounded,"SF Pro Rounded",system-ui,sans-serif}
+p{margin:0 0 20px;color:var(--smoke)}
+a{display:inline-block;padding:12px 20px;border-radius:12px;background:var(--ember);color:var(--ash);font-weight:600;text-decoration:none}
+</style>
+</head>
+<body>
+<main>
+<h1 id="title">Back to Campfire Log</h1>
+<p id="text">Taking you back to the app.</p>
+<a id="open" href="campfirelog://steam">Open Campfire Log</a>
+</main>
+<script>
+// Steam's answer is in this page's address. Pass it on to the app unchanged; the app has it
+// checked with Steam. Opened any other way, this page has nothing to do.
+(function () {
+  var answer = window.location.search;
+  var link = document.getElementById("open");
+  if (answer.indexOf("openid.mode=") === -1) {
+    document.getElementById("title").textContent = "Nothing to do here";
+    document.getElementById("text").textContent = "This page is only used while connecting Steam in the Campfire Log app.";
+    link.hidden = true;
+    return;
+  }
+  link.href = "campfirelog://steam" + answer;
+  window.location.replace(link.href);
+})();
+</script>
+</body>
+</html>
